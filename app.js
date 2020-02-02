@@ -7,6 +7,9 @@ const app = express()
 const fetch = require('node-fetch')
 //pulling fetch from node-fetch
 
+require('dotenv').config()
+//search for .env file
+
 const Datastore = require('nedb')
 //import nedb
 
@@ -17,8 +20,14 @@ database.loadDatabase();
 
 const fs = require("fs");
 
-app.listen(3000, () => console.log('listening at 3000'))
-//create server listen at port 3000, if successful log
+
+const port = process.env.PORT || 3000
+
+app.listen(port, () => {
+    console.log(`listening at ${port}`)
+    //create server listen at port 3000, if successful log
+})
+    
 
 app.use(express.static('public'))
 //app will display content in the 'public' folder, in our case the index.html
